@@ -36,7 +36,7 @@ public class GunController : MonoBehaviour
     public void UpdateGun(IGun gun)
     {
         Gun = gun;
-        print($"Picked up gun: {gun}. Shoot interval: {gun.ShootInterval}");
+        print($"Picked up gun. Shoot interval: {gun.ShootInterval}");
         _shootInterval = Gun.ShootInterval;
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace GunTypes
 {
-    public class Glock : MonoBehaviour, IGun
+    public class Glock : IGun
     {
         public float ShootInterval
         {
@@ -26,7 +26,7 @@ namespace GunTypes
 
         void IGun.Impact(Vector3 hitPosition)
         {
-            throw new System.NotImplementedException();
+            return;
         }
     } 
 }

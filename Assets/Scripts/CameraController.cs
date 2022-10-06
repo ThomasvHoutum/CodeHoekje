@@ -17,13 +17,17 @@ public class CameraController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
+    private void Start() { _playerHead.localEulerAngles = Vector3.zero; }
+
     private void Update()
     {
         GetInput();
-        PreventClipping();
         CameraMovement();
     }
-
+    private void FixedUpdate()
+    {
+        PreventClipping();
+    }
     private void GetInput()
     {
         _xInput = Input.GetAxis("Mouse X");

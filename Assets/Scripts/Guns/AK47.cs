@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace GunTypes
 {
-    public class AK47 : MonoBehaviour, IGun
+    public class AK47 : IGun
     {
         public float ShootInterval
         {
@@ -25,7 +25,7 @@ namespace GunTypes
         }
         void IGun.Impact(Vector3 hitPosition)
         {
-            throw new System.NotImplementedException();
+            return;
         }
     } 
 }
