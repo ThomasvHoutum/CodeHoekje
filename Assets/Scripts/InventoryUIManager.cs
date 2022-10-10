@@ -1,10 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class InventoryUIManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text _Tability;
-    [SerializeField] private SpriteRenderer _Sability;
+    [SerializeField] private Image _Sability;
 
 
     [SerializeField] private Sprite _fireaball;
