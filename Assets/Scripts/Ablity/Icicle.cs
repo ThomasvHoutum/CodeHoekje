@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Fireball : IAbility
+public class Icicle : IAbility
 {
     public string IdentityName
     {
@@ -30,9 +30,9 @@ public class Fireball : IAbility
     }
     private int _abilityCount;
 
-    public Fireball()
+    public Icicle()
     {
-        IdentityName = "Fireball";
+        IdentityName = "Icicle";
         ShootInterval = 2f;
         ProjectileDamage = 5;
         AbilityCount = 3;
@@ -47,6 +47,6 @@ public class Fireball : IAbility
 
     void IAbility.Impact(Vector3 hitPosition)
     {
-        
+
     }
 }

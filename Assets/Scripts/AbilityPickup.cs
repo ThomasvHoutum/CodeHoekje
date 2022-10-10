@@ -20,8 +20,8 @@ public class AbilityPickup : MonoBehaviour
         {
             IAbility ability = new Fireball();
             if (_abilities == Abilities.Fireball) ability = new Fireball();
-            else if (_abilities == Abilities.Icicle) ability = new Fireball();
-            else if (_abilities == Abilities.MagicStuff) ability = new Fireball();
+            else if (_abilities == Abilities.Icicle) ability = new Icicle();
+            else if (_abilities == Abilities.MagicStuff) ability = new MagicStuff();
 
             _inventorySystem.PickUp(ability);
 

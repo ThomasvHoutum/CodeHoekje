@@ -12,15 +12,18 @@ public interface IAbility
     public int AbilityCount { get; set; }
 
     public static Action<IAbility> UsedAblity;
-    public static Action<IAbility> RunOutAbility;
+    public static Action<IAbility> RanOutAbility;
     void Shoot(Transform origin)
     {
-        if (AbilityCount > 0)
+        int count = EnoughAbilities();
+        if (count == 0) 
         {
-            RunOutAbility(this);
             return;
         }
-        AbilityCount--;
+        if (count == 1)
+        {
+            RanOutAbility(this);
+        }
         RaycastHit hit;
         Debug.DrawRay(origin.position, origin.forward);
         if (Physics.Raycast(origin.position, origin.forward, out hit))
@@ -31,7 +34,9 @@ public interface IAbility
             }
             Impact(hit.point);
         }
-        UsedAblity(this);
+        if (UsedAblity != null)
+            UsedAblity(this);
     }
+    int EnoughAbilities();
     void Impact(Vector3 hitPosition);
 }

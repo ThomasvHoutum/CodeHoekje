@@ -9,12 +9,12 @@ public class InventorySystem : MonoBehaviour
 
     private void Awake()
     {
-        IAbility.RunOutAbility += AbilityRanOut;
+        IAbility.RanOutAbility += AbilityRanOut;
     }
 
     private void OnDestroy()
     {
-        IAbility.RunOutAbility -= AbilityRanOut;
+        IAbility.RanOutAbility -= AbilityRanOut;
     }
 
     private void AbilityRanOut(IAbility ability)
@@ -31,7 +31,7 @@ public class InventorySystem : MonoBehaviour
 
     private bool FillSlot(IAbility ability)
     {
-        if (AbilitySlot != null)
+        if (AbilitySlot == null)
             AbilitySlot = ability;
         else
         {

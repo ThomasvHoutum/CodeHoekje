@@ -11,12 +11,13 @@ public class InventoryUIManager : MonoBehaviour
     [SerializeField] private Sprite _fireaball;
     [SerializeField] private Sprite _icicle;
     [SerializeField] private Sprite _magicStuff;
+    [SerializeField] private Sprite _empty;
 
     private void Awake()
     {
         InventorySystem.PickedUpAbility += Pickup;
         IAbility.UsedAblity += UpdateAbilityCountUI;
-        IAbility.RunOutAbility += AbilityRanOut;
+        IAbility.RanOutAbility += AbilityRanOut;
     }
 
     private void Pickup(InventorySystem invSystem)
@@ -34,18 +35,19 @@ public class InventoryUIManager : MonoBehaviour
     private void UpdateAbilityCountUI(IAbility ability)
     {
         _Tability.text = ability.AbilityCount.ToString();
+        if (ability.AbilityCount == 0) AbilityRanOut(ability);
     }
 
     private void AbilityRanOut(IAbility ability)
     {
         _Tability.text = "0";
-        _Sability.sprite = null;
+        _Sability.sprite = _empty;
     }
 
     private void OnDestroy()
     {
         InventorySystem.PickedUpAbility -= Pickup;
         IAbility.UsedAblity -= UpdateAbilityCountUI;
-        IAbility.RunOutAbility -= AbilityRanOut;
+        IAbility.RanOutAbility -= AbilityRanOut;
     }
 }

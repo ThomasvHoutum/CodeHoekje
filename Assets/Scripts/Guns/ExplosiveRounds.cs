@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace GunTypes
 {
-    public class ExplosiveRounds : MonoBehaviour, IGun
+    public class ExplosiveRounds : IGun
     {
         public float ShootInterval
         {
@@ -18,6 +18,7 @@ namespace GunTypes
         }
         private int _bulletDamage;
 
+        private float _explosionRadius = 5;
         public ExplosiveRounds()
         {
             ShootInterval = 2f;
@@ -26,7 +27,15 @@ namespace GunTypes
 
         void IGun.Impact(Vector3 hitPosition)
         {
-            print("Explosion");
+            GameObject explosionObj = new GameObject("Explosion");
+            explosionObj.SetActive(false);
+            explosionObj.layer = LayerMask.NameToLayer("Ignore Raycast");
+            explosionObj.transform.position = hitPosition;
+            SphereCollider sphere = explosionObj.AddComponent<SphereCollider>();
+            sphere.isTrigger = true;
+            sphere.radius = _explosionRadius;
+            explosionObj.AddComponent<Explosion>();
+            explosionObj.SetActive(true);
 
             // draw circle collider
             // everything inside collider take damage

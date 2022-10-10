@@ -1,8 +1,9 @@
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Transform _playerHead, _playerBody;
+    [SerializeField] private Transform _playerHead, _playerBody, _clipPoint;
 
     [SerializeField] private float _rotationSpeed;
     private float _xInput, _yInput;
@@ -12,6 +13,8 @@ public class CameraController : MonoBehaviour
 
     private float _minXAngle = -60;
     private float _maxXAngle = 70;
+
+    private RaycastHit hit;
 
     private void Awake()
     {
@@ -62,10 +65,11 @@ public class CameraController : MonoBehaviour
 
     private void PreventClipping()
     {
-        Vector3 beginPoint = new Vector3(transform.position.x, transform.position.y, transform.position.z - .1f);
-        RaycastHit hit;
+        Vector3 beginPoint = new Vector3(_clipPoint.position.x, _clipPoint.position.y, _clipPoint.position.z);
+        Debug.DrawRay(beginPoint, transform.forward, Color.red);
         if (Physics.Raycast(beginPoint, transform.forward, out hit, 8))
         {
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast")) return;
             if (!hit.collider.CompareTag("Player"))
             {
                 _distToPlayer = _distToPlayer + hit.distance;
