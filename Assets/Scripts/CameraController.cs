@@ -16,21 +16,33 @@ public class CameraController : MonoBehaviour
 
     private RaycastHit hit;
 
+    private bool _doOnce;
+
     private void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
-    private void Start() { _playerHead.localEulerAngles = Vector3.zero; }
+    private void Start() { _playerHead.eulerAngles = Vector3.zero; }
 
     private void Update()
     {
         GetInput();
         CameraMovement();
+        if (_doOnce == false)
+            DoOnce();
     }
+
+    private void DoOnce()
+    {
+        _playerHead.eulerAngles = Vector3.zero;
+        _doOnce = true;
+    }
+
     private void FixedUpdate()
     {
         PreventClipping();
     }
+
     private void GetInput()
     {
         _xInput = Input.GetAxis("Mouse X");
