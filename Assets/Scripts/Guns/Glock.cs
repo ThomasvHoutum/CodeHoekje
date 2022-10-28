@@ -21,7 +21,7 @@ namespace GunTypes
         public Glock()
         {
             ShootInterval = .8f;
-            BulletDamage = 3;
+            BulletDamage = 12;
         }
 
         void IGun.Impact(Vector3 hitPosition)

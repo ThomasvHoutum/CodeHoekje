@@ -47,6 +47,6 @@ public class MagicStuff : IAbility
 
     void IAbility.Impact(Vector3 hitPosition)
     {
-
+        return;
     }
 }

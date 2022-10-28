@@ -30,6 +30,7 @@ public interface IAbility
         {
             if (hit.collider.CompareTag("Enemy"))
             {
+                hit.collider.gameObject.GetComponent<EnemyController>().TakeDamage(ProjectileDamage);
                 Debug.Log("boop");
             }
             Impact(hit.point);

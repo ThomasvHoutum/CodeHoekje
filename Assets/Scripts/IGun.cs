@@ -14,6 +14,7 @@ public interface IGun
         {
             if (hit.collider.CompareTag("Enemy"))
             {
+                hit.collider.gameObject.GetComponent<EnemyController>().TakeDamage(BulletDamage);
                 Debug.Log("boop");
             }
             Impact(hit.point);

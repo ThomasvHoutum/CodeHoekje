@@ -36,10 +36,6 @@ namespace GunTypes
             sphere.radius = _explosionRadius;
             explosionObj.AddComponent<Explosion>();
             explosionObj.SetActive(true);
-
-            // draw circle collider
-            // everything inside collider take damage
-            // push outwards
         }
     }
 }
